@@ -53,11 +53,11 @@ public class FXMLDocumentController implements Initializable {
     private void btagregar(ActionEvent event) {
         String nombre = txagregar.getText();
         String direcion = txdireccion.getText();
-        String Edad = txedad.getText();
+        int Edad = Integer.parseInt(txedad.getText());
         String departamento = txdepartamento.getText();
         String codigo = txcodigo.getText();
 
-        Empleado objE = new Empleado(codigo, nombre, Edad, direcion, departamento);
+        Empleado objE = new Empleado(codigo, departamento, nombre, direcion, Edad);
         listaEmpleados.add(objE);
 
     }

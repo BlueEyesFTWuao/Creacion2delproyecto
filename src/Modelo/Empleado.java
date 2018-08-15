@@ -32,10 +32,6 @@ public class Empleado extends Persona {
         this.departamento = departamento;
     }
 
-    public Empleado(String codigo, String nombre, String Edad, String direccion, String departamento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /**
      * Get the value of departamento
      *
@@ -74,7 +70,7 @@ public class Empleado extends Persona {
 
     @Override
     public String toString() {
-        return  super.toString() + "," + codigoEmpleado + "," + departamento ;
+        return super.toString() + "," + codigoEmpleado + "," + departamento;
     }
 
     public boolean guardarEmpleados(LinkedList<Empleado> listaEmpleados) {
@@ -108,33 +104,32 @@ public class Empleado extends Persona {
     }
 
     public boolean crearFileXML(LinkedList<Empleado> listaEmpleados) {
-      boolean g= false;
+        boolean g = false;
         try {
-          Element company = new Element("company");
-          Document doc=new Document(company);
-         
-          
-          for (int i = 0; i < listaEmpleados.size(); i++) {
-              
-               Element staff = new Element("empleado");
-          
-          staff.addContent(new Element("Nombre").setText(listaEmpleados.get(i).getNombre()));
-          staff.addContent(new Element("Direccion").setText(listaEmpleados.get(i).getDireccion()));
-          staff.addContent(new Element("Codigo").setText(listaEmpleados.get(i).getCodigoEmpleado()));
-          staff.addContent(new Element("Departamento").setText(listaEmpleados.get(i).getDepartamento()));
-          staff.addContent(new Element("Edad").setText(String.valueOf(listaEmpleados.get(i).getEdad())));
-          
-          doc.getRootElement().addContent(staff);
-              
-          }
-          XMLOutputter xmlOutput = new XMLOutputter();
-          xmlOutput.setFormat(Format.getPrettyFormat());
-          xmlOutput.output(doc,new FileWriter("Company.xml"));
-                  g = true;
-      } catch (IOException io){
+            Element Company = new Element("Company");
+            Document doc = new Document(Company);
+
+            for (int i = 0; i < listaEmpleados.size(); i++) {
+
+                Element staff = new Element("empleado");
+
+                staff.addContent(new Element("Nombre").setText(listaEmpleados.get(i).getNombre()));
+                staff.addContent(new Element("Direccion").setText(listaEmpleados.get(i).getDireccion()));
+                staff.addContent(new Element("Codigo").setText(listaEmpleados.get(i).getCodigoEmpleado()));
+                staff.addContent(new Element("Departamento").setText(listaEmpleados.get(i).getDepartamento()));
+                staff.addContent(new Element("Edad").setText(String.valueOf(listaEmpleados.get(i).getEdad())));
+
+                doc.getRootElement().addContent(staff);
+
+            }
+            XMLOutputter xmlOutput = new XMLOutputter();
+            xmlOutput.setFormat(Format.getPrettyFormat());
+            xmlOutput.output(doc, new FileWriter("Company.xml"));
+            g = true;
+        } catch (IOException io) {
             System.out.println(io.getMessage());
-            g=false;
-      }
+            g = false;
+        }
         return g;
     }
 
